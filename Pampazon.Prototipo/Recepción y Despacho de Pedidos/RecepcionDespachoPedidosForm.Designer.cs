@@ -632,7 +632,10 @@
             Controls.Add(grpContexto);
             Controls.Add(tabDespachoPedidos);
             Font = new Font("Segoe UI", 9F);
-            MinimumSize = new Size(1350, 940);
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1334, 901);
+            MinimumSize = new Size(640, 480);
+            WindowState = FormWindowState.Maximized;
             Name = "RecepcionDespachoPedidosForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Recepción y Despacho de Pedidos";

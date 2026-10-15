@@ -868,7 +868,10 @@
             Controls.Add(grpContexto);
             Controls.Add(tabGestion);
             Font = new Font("Segoe UI", 9F);
-            MinimumSize = new Size(1350, 940);
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1334, 901);
+            MinimumSize = new Size(640, 480);
+            WindowState = FormWindowState.Maximized;
             Name = "GestionPedidosSeleccionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Gestión de Pedidos y Selección";
