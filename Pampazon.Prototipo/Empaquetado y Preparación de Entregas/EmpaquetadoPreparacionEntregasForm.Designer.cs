@@ -13,7 +13,8 @@
         {
             ListViewItem item_lvPedidosEnPreparacion_0 = new ListViewItem(new string[] { "OP-000181", "Cliente Demo A", "Fulfillment", "Destino demo A", "Completas", "EN PREPARACIÓN" }, -1);
             ListViewItem item_lvPedidosEnPreparacion_1 = new ListViewItem(new string[] { "OP-000183", "Cliente Demo B", "Palé cerrado", "Destino demo B", "Completas", "EN PREPARACIÓN" }, -1);
-            pnlEncabezado = new Panel();
+            ListViewItem item_lvControl_0 = new ListViewItem(new string[] { "SKU-001", "Remera de algodón", "80", "80", "", "" }, -1);
+            ListViewItem item_lvBultos_0 = new ListViewItem(new string[] { "B-001", "SKU-001", "Remera de algodón", "50" }, -1);
             lblTitulo = new Label();
             lblEmpresa = new Label();
             grpContexto = new GroupBox();
@@ -38,13 +39,16 @@
             lblDestino = new Label();
             txtDestino = new TextBox();
             grpControl = new GroupBox();
-            dgvControl = new DataGridView();
-            colSku = new DataGridViewTextBoxColumn();
-            colProducto = new DataGridViewTextBoxColumn();
-            colSolicitada = new DataGridViewTextBoxColumn();
-            colEntregada = new DataGridViewTextBoxColumn();
-            colControlada = new DataGridViewTextBoxColumn();
-            colDiferencia = new DataGridViewTextBoxColumn();
+            lvControl = new ListView();
+            lvControlCol0 = new ColumnHeader();
+            lvControlCol1 = new ColumnHeader();
+            lvControlCol2 = new ColumnHeader();
+            lvControlCol3 = new ColumnHeader();
+            lvControlCol4 = new ColumnHeader();
+            lvControlCol5 = new ColumnHeader();
+            lblCantidadControlada = new Label();
+            txtCantidadControlada = new TextBox();
+            btnRegistrarControl = new Button();
             grpFulfillment = new GroupBox();
             lblIdBulto = new Label();
             txtIdBulto = new TextBox();
@@ -53,11 +57,11 @@
             lblCantBulto = new Label();
             txtCantBulto = new TextBox();
             btnAgregarBulto = new Button();
-            dgvBultos = new DataGridView();
-            colBulto = new DataGridViewTextBoxColumn();
-            colSkuBulto = new DataGridViewTextBoxColumn();
-            colProductoBulto = new DataGridViewTextBoxColumn();
-            colCantBulto = new DataGridViewTextBoxColumn();
+            lvBultos = new ListView();
+            lvBultosCol0 = new ColumnHeader();
+            lvBultosCol1 = new ColumnHeader();
+            lvBultosCol2 = new ColumnHeader();
+            lvBultosCol3 = new ColumnHeader();
             grpPale = new GroupBox();
             lblIdPale = new Label();
             txtIdPale = new TextBox();
@@ -69,9 +73,6 @@
             btnConfirmarPreparacion = new Button();
             btnReimprimir = new Button();
             btnReportarIncidente = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvControl).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBultos).BeginInit();
-            pnlEncabezado.SuspendLayout();
             grpContexto.SuspendLayout();
             grpPedidos.SuspendLayout();
             grpDatosPedido.SuspendLayout();
@@ -81,35 +82,32 @@
             grpCierre.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlEncabezado
-            // 
-            pnlEncabezado.Controls.Add(lblTitulo);
-            pnlEncabezado.Controls.Add(lblEmpresa);
-            pnlEncabezado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlEncabezado.BackColor = Color.FromArgb(35, 80, 124);
-            pnlEncabezado.Location = new Point(0, 0);
-            pnlEncabezado.Name = "pnlEncabezado";
-            pnlEncabezado.Size = new Size(1320, 76);
-            pnlEncabezado.TabIndex = 0;
-            // 
             // lblTitulo
             // 
             lblTitulo.Text = "Empaquetado y Preparación de Entregas";
+            lblTitulo.BackColor = Color.FromArgb(35, 80, 124);
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTitulo.Padding = new Padding(24, 0, 0, 0);
             lblTitulo.Font = new Font("Segoe UI", 19F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(24, 13);
+            lblTitulo.Location = new Point(0, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(890, 34);
-            lblTitulo.TabIndex = 1;
+            lblTitulo.Size = new Size(1320, 50);
+            lblTitulo.TabIndex = 0;
             // 
             // lblEmpresa
             // 
             lblEmpresa.Text = "PAMPAZON  |  Operario de Preparación";
+            lblEmpresa.BackColor = Color.FromArgb(35, 80, 124);
+            lblEmpresa.TextAlign = ContentAlignment.MiddleLeft;
+            lblEmpresa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblEmpresa.Padding = new Padding(26, 0, 0, 0);
             lblEmpresa.ForeColor = Color.White;
-            lblEmpresa.Location = new Point(26, 48);
+            lblEmpresa.Location = new Point(0, 50);
             lblEmpresa.Name = "lblEmpresa";
-            lblEmpresa.Size = new Size(1050, 22);
-            lblEmpresa.TabIndex = 2;
+            lblEmpresa.Size = new Size(1320, 26);
+            lblEmpresa.TabIndex = 1;
             // 
             // grpContexto
             // 
@@ -123,7 +121,7 @@
             grpContexto.Location = new Point(16, 84);
             grpContexto.Name = "grpContexto";
             grpContexto.Size = new Size(1288, 72);
-            grpContexto.TabIndex = 3;
+            grpContexto.TabIndex = 2;
             // 
             // lblDeposito
             // 
@@ -131,7 +129,7 @@
             lblDeposito.Location = new Point(16, 30);
             lblDeposito.Name = "lblDeposito";
             lblDeposito.Size = new Size(68, 24);
-            lblDeposito.TabIndex = 4;
+            lblDeposito.TabIndex = 3;
             // 
             // cboDeposito
             // 
@@ -142,7 +140,7 @@
             cboDeposito.Location = new Point(90, 26);
             cboDeposito.Name = "cboDeposito";
             cboDeposito.Size = new Size(373, 23);
-            cboDeposito.TabIndex = 5;
+            cboDeposito.TabIndex = 4;
             // 
             // lblRol
             // 
@@ -150,7 +148,7 @@
             lblRol.Location = new Point(480, 29);
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(260, 24);
-            lblRol.TabIndex = 6;
+            lblRol.TabIndex = 5;
             // 
             // lblFecha
             // 
@@ -158,7 +156,7 @@
             lblFecha.Location = new Point(780, 30);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(72, 24);
-            lblFecha.TabIndex = 7;
+            lblFecha.TabIndex = 6;
             // 
             // dtpFechaTrabajo
             // 
@@ -168,7 +166,7 @@
             dtpFechaTrabajo.Location = new Point(856, 26);
             dtpFechaTrabajo.Name = "dtpFechaTrabajo";
             dtpFechaTrabajo.Size = new Size(410, 23);
-            dtpFechaTrabajo.TabIndex = 8;
+            dtpFechaTrabajo.TabIndex = 7;
             // 
             // grpPedidos
             // 
@@ -178,7 +176,7 @@
             grpPedidos.Location = new Point(16, 170);
             grpPedidos.Name = "grpPedidos";
             grpPedidos.Size = new Size(1288, 170);
-            grpPedidos.TabIndex = 9;
+            grpPedidos.TabIndex = 8;
             // 
             // lvPedidosEnPreparacion
             // 
@@ -189,7 +187,7 @@
             lvPedidosEnPreparacion.Location = new Point(12, 26);
             lvPedidosEnPreparacion.Name = "lvPedidosEnPreparacion";
             lvPedidosEnPreparacion.Size = new Size(1262, 132);
-            lvPedidosEnPreparacion.TabIndex = 10;
+            lvPedidosEnPreparacion.TabIndex = 9;
             lvPedidosEnPreparacion.UseCompatibleStateImageBehavior = false;
             lvPedidosEnPreparacion.View = View.Details;
             // 
@@ -236,7 +234,7 @@
             grpDatosPedido.Location = new Point(16, 350);
             grpDatosPedido.Name = "grpDatosPedido";
             grpDatosPedido.Size = new Size(1288, 66);
-            grpDatosPedido.TabIndex = 11;
+            grpDatosPedido.TabIndex = 10;
             // 
             // lblCliente
             // 
@@ -244,7 +242,7 @@
             lblCliente.Location = new Point(14, 28);
             lblCliente.Name = "lblCliente";
             lblCliente.Size = new Size(60, 20);
-            lblCliente.TabIndex = 12;
+            lblCliente.TabIndex = 11;
             // 
             // txtCliente
             // 
@@ -252,7 +250,7 @@
             txtCliente.Location = new Point(76, 24);
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(250, 23);
-            txtCliente.TabIndex = 13;
+            txtCliente.TabIndex = 12;
             // 
             // lblModalidad
             // 
@@ -260,7 +258,7 @@
             lblModalidad.Location = new Point(350, 28);
             lblModalidad.Name = "lblModalidad";
             lblModalidad.Size = new Size(80, 20);
-            lblModalidad.TabIndex = 14;
+            lblModalidad.TabIndex = 13;
             // 
             // txtModalidad
             // 
@@ -268,7 +266,7 @@
             txtModalidad.Location = new Point(434, 24);
             txtModalidad.Name = "txtModalidad";
             txtModalidad.Size = new Size(170, 23);
-            txtModalidad.TabIndex = 15;
+            txtModalidad.TabIndex = 14;
             // 
             // lblDestino
             // 
@@ -276,7 +274,7 @@
             lblDestino.Location = new Point(630, 28);
             lblDestino.Name = "lblDestino";
             lblDestino.Size = new Size(60, 20);
-            lblDestino.TabIndex = 16;
+            lblDestino.TabIndex = 15;
             // 
             // txtDestino
             // 
@@ -284,71 +282,90 @@
             txtDestino.Location = new Point(694, 24);
             txtDestino.Name = "txtDestino";
             txtDestino.Size = new Size(300, 23);
-            txtDestino.TabIndex = 17;
+            txtDestino.TabIndex = 16;
             // 
             // grpControl
             // 
-            grpControl.Controls.Add(dgvControl);
+            grpControl.Controls.Add(lvControl);
+            grpControl.Controls.Add(lblCantidadControlada);
+            grpControl.Controls.Add(txtCantidadControlada);
+            grpControl.Controls.Add(btnRegistrarControl);
             grpControl.TabStop = false;
             grpControl.Text = "Control de productos recibidos de Almacén";
             grpControl.Location = new Point(16, 426);
             grpControl.Name = "grpControl";
             grpControl.Size = new Size(1288, 170);
-            grpControl.TabIndex = 18;
+            grpControl.TabIndex = 17;
             // 
-            // dgvControl
+            // lvControl
             // 
-            dgvControl.AllowUserToAddRows = false;
-            dgvControl.AllowUserToDeleteRows = false;
-            dgvControl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvControl.Columns.AddRange(new DataGridViewColumn[] { colSku, colProducto, colSolicitada, colEntregada, colControlada, colDiferencia });
-            dgvControl.RowHeadersVisible = false;
-            dgvControl.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvControl.Location = new Point(12, 24);
-            dgvControl.Name = "dgvControl";
-            dgvControl.Size = new Size(1262, 134);
-            dgvControl.TabIndex = 19;
+            lvControl.Columns.AddRange(new ColumnHeader[] { lvControlCol0, lvControlCol1, lvControlCol2, lvControlCol3, lvControlCol4, lvControlCol5 });
+            lvControl.FullRowSelect = true;
+            lvControl.GridLines = true;
+            lvControl.Items.AddRange(new ListViewItem[] { item_lvControl_0 });
+            lvControl.Location = new Point(12, 24);
+            lvControl.Name = "lvControl";
+            lvControl.Size = new Size(1262, 96);
+            lvControl.TabIndex = 18;
+            lvControl.UseCompatibleStateImageBehavior = false;
+            lvControl.View = View.Details;
             // 
-            // colSku
+            // lvControlCol0
             // 
-            colSku.HeaderText = "SKU";
-            colSku.Name = "colSku";
-            colSku.Width = 100;
-            colSku.ReadOnly = true;
+            lvControlCol0.Text = "SKU";
+            lvControlCol0.Width = 100;
             // 
-            // colProducto
+            // lvControlCol1
             // 
-            colProducto.HeaderText = "Producto";
-            colProducto.Name = "colProducto";
-            colProducto.Width = 260;
-            colProducto.ReadOnly = true;
+            lvControlCol1.Text = "Producto";
+            lvControlCol1.Width = 260;
             // 
-            // colSolicitada
+            // lvControlCol2
             // 
-            colSolicitada.HeaderText = "Cantidad solicitada";
-            colSolicitada.Name = "colSolicitada";
-            colSolicitada.Width = 150;
-            colSolicitada.ReadOnly = true;
+            lvControlCol2.Text = "Cantidad solicitada";
+            lvControlCol2.Width = 150;
             // 
-            // colEntregada
+            // lvControlCol3
             // 
-            colEntregada.HeaderText = "Entregada por Almacén";
-            colEntregada.Name = "colEntregada";
-            colEntregada.Width = 170;
-            colEntregada.ReadOnly = true;
+            lvControlCol3.Text = "Entregada por Almacén";
+            lvControlCol3.Width = 170;
             // 
-            // colControlada
+            // lvControlCol4
             // 
-            colControlada.HeaderText = "Cantidad controlada";
-            colControlada.Name = "colControlada";
-            colControlada.Width = 150;
+            lvControlCol4.Text = "Cantidad controlada";
+            lvControlCol4.Width = 150;
             // 
-            // colDiferencia
+            // lvControlCol5
             // 
-            colDiferencia.HeaderText = "Diferencia";
-            colDiferencia.Name = "colDiferencia";
-            colDiferencia.Width = 120;
-            colDiferencia.ReadOnly = true;
+            lvControlCol5.Text = "Diferencia";
+            lvControlCol5.Width = 120;
+            // 
+            // lblCantidadControlada
+            // 
+            lblCantidadControlada.Text = "Cantidad controlada";
+            lblCantidadControlada.Location = new Point(14, 134);
+            lblCantidadControlada.Name = "lblCantidadControlada";
+            lblCantidadControlada.Size = new Size(130, 20);
+            lblCantidadControlada.TabIndex = 19;
+            // 
+            // txtCantidadControlada
+            // 
+            txtCantidadControlada.Location = new Point(150, 130);
+            txtCantidadControlada.Name = "txtCantidadControlada";
+            txtCantidadControlada.Size = new Size(120, 23);
+            txtCantidadControlada.TabIndex = 20;
+            // 
+            // btnRegistrarControl
+            // 
+            btnRegistrarControl.BackColor = Color.FromArgb(35, 80, 124);
+            btnRegistrarControl.FlatStyle = FlatStyle.Flat;
+            btnRegistrarControl.ForeColor = Color.White;
+            btnRegistrarControl.Text = "Registrar control";
+            btnRegistrarControl.UseVisualStyleBackColor = false;
+            btnRegistrarControl.Location = new Point(290, 126);
+            btnRegistrarControl.Name = "btnRegistrarControl";
+            btnRegistrarControl.Size = new Size(260, 30);
+            btnRegistrarControl.TabIndex = 21;
             // 
             // grpFulfillment
             // 
@@ -359,13 +376,13 @@
             grpFulfillment.Controls.Add(lblCantBulto);
             grpFulfillment.Controls.Add(txtCantBulto);
             grpFulfillment.Controls.Add(btnAgregarBulto);
-            grpFulfillment.Controls.Add(dgvBultos);
+            grpFulfillment.Controls.Add(lvBultos);
             grpFulfillment.TabStop = false;
             grpFulfillment.Text = "Bultos (modalidad fulfillment)";
             grpFulfillment.Location = new Point(16, 606);
             grpFulfillment.Name = "grpFulfillment";
             grpFulfillment.Size = new Size(820, 250);
-            grpFulfillment.TabIndex = 20;
+            grpFulfillment.TabIndex = 22;
             // 
             // lblIdBulto
             // 
@@ -373,7 +390,7 @@
             lblIdBulto.Location = new Point(14, 26);
             lblIdBulto.Name = "lblIdBulto";
             lblIdBulto.Size = new Size(200, 20);
-            lblIdBulto.TabIndex = 21;
+            lblIdBulto.TabIndex = 23;
             // 
             // txtIdBulto
             // 
@@ -381,7 +398,7 @@
             txtIdBulto.Location = new Point(14, 48);
             txtIdBulto.Name = "txtIdBulto";
             txtIdBulto.Size = new Size(200, 23);
-            txtIdBulto.TabIndex = 22;
+            txtIdBulto.TabIndex = 24;
             // 
             // lblSkuBulto
             // 
@@ -389,7 +406,7 @@
             lblSkuBulto.Location = new Point(14, 80);
             lblSkuBulto.Name = "lblSkuBulto";
             lblSkuBulto.Size = new Size(200, 20);
-            lblSkuBulto.TabIndex = 23;
+            lblSkuBulto.TabIndex = 25;
             // 
             // cboSkuBulto
             // 
@@ -399,7 +416,7 @@
             cboSkuBulto.Location = new Point(14, 102);
             cboSkuBulto.Name = "cboSkuBulto";
             cboSkuBulto.Size = new Size(200, 23);
-            cboSkuBulto.TabIndex = 24;
+            cboSkuBulto.TabIndex = 26;
             // 
             // lblCantBulto
             // 
@@ -407,14 +424,14 @@
             lblCantBulto.Location = new Point(14, 134);
             lblCantBulto.Name = "lblCantBulto";
             lblCantBulto.Size = new Size(200, 20);
-            lblCantBulto.TabIndex = 25;
+            lblCantBulto.TabIndex = 27;
             // 
             // txtCantBulto
             // 
             txtCantBulto.Location = new Point(14, 156);
             txtCantBulto.Name = "txtCantBulto";
             txtCantBulto.Size = new Size(100, 23);
-            txtCantBulto.TabIndex = 26;
+            txtCantBulto.TabIndex = 28;
             // 
             // btnAgregarBulto
             // 
@@ -426,48 +443,40 @@
             btnAgregarBulto.Location = new Point(14, 196);
             btnAgregarBulto.Name = "btnAgregarBulto";
             btnAgregarBulto.Size = new Size(200, 34);
-            btnAgregarBulto.TabIndex = 27;
+            btnAgregarBulto.TabIndex = 29;
             // 
-            // dgvBultos
+            // lvBultos
             // 
-            dgvBultos.AllowUserToAddRows = false;
-            dgvBultos.AllowUserToDeleteRows = false;
-            dgvBultos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBultos.Columns.AddRange(new DataGridViewColumn[] { colBulto, colSkuBulto, colProductoBulto, colCantBulto });
-            dgvBultos.RowHeadersVisible = false;
-            dgvBultos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBultos.Location = new Point(230, 26);
-            dgvBultos.Name = "dgvBultos";
-            dgvBultos.Size = new Size(576, 204);
-            dgvBultos.TabIndex = 28;
+            lvBultos.Columns.AddRange(new ColumnHeader[] { lvBultosCol0, lvBultosCol1, lvBultosCol2, lvBultosCol3 });
+            lvBultos.FullRowSelect = true;
+            lvBultos.GridLines = true;
+            lvBultos.Items.AddRange(new ListViewItem[] { item_lvBultos_0 });
+            lvBultos.Location = new Point(230, 26);
+            lvBultos.Name = "lvBultos";
+            lvBultos.Size = new Size(576, 204);
+            lvBultos.TabIndex = 30;
+            lvBultos.UseCompatibleStateImageBehavior = false;
+            lvBultos.View = View.Details;
             // 
-            // colBulto
+            // lvBultosCol0
             // 
-            colBulto.HeaderText = "Bulto";
-            colBulto.Name = "colBulto";
-            colBulto.Width = 140;
-            colBulto.ReadOnly = true;
+            lvBultosCol0.Text = "Bulto";
+            lvBultosCol0.Width = 140;
             // 
-            // colSkuBulto
+            // lvBultosCol1
             // 
-            colSkuBulto.HeaderText = "SKU";
-            colSkuBulto.Name = "colSkuBulto";
-            colSkuBulto.Width = 120;
-            colSkuBulto.ReadOnly = true;
+            lvBultosCol1.Text = "SKU";
+            lvBultosCol1.Width = 120;
             // 
-            // colProductoBulto
+            // lvBultosCol2
             // 
-            colProductoBulto.HeaderText = "Producto";
-            colProductoBulto.Name = "colProductoBulto";
-            colProductoBulto.Width = 200;
-            colProductoBulto.ReadOnly = true;
+            lvBultosCol2.Text = "Producto";
+            lvBultosCol2.Width = 200;
             // 
-            // colCantBulto
+            // lvBultosCol3
             // 
-            colCantBulto.HeaderText = "Cantidad";
-            colCantBulto.Name = "colCantBulto";
-            colCantBulto.Width = 100;
-            colCantBulto.ReadOnly = true;
+            lvBultosCol3.Text = "Cantidad";
+            lvBultosCol3.Width = 100;
             // 
             // grpPale
             // 
@@ -479,7 +488,7 @@
             grpPale.Location = new Point(846, 606);
             grpPale.Name = "grpPale";
             grpPale.Size = new Size(458, 100);
-            grpPale.TabIndex = 29;
+            grpPale.TabIndex = 31;
             // 
             // lblIdPale
             // 
@@ -487,7 +496,7 @@
             lblIdPale.Location = new Point(14, 24);
             lblIdPale.Name = "lblIdPale";
             lblIdPale.Size = new Size(200, 20);
-            lblIdPale.TabIndex = 30;
+            lblIdPale.TabIndex = 32;
             // 
             // txtIdPale
             // 
@@ -495,7 +504,7 @@
             txtIdPale.Location = new Point(14, 44);
             txtIdPale.Name = "txtIdPale";
             txtIdPale.Size = new Size(260, 23);
-            txtIdPale.TabIndex = 31;
+            txtIdPale.TabIndex = 33;
             // 
             // chkPaleConforme
             // 
@@ -504,7 +513,7 @@
             chkPaleConforme.Location = new Point(14, 72);
             chkPaleConforme.Name = "chkPaleConforme";
             chkPaleConforme.Size = new Size(420, 22);
-            chkPaleConforme.TabIndex = 32;
+            chkPaleConforme.TabIndex = 34;
             // 
             // grpCierre
             // 
@@ -519,7 +528,7 @@
             grpCierre.Location = new Point(846, 716);
             grpCierre.Name = "grpCierre";
             grpCierre.Size = new Size(458, 140);
-            grpCierre.TabIndex = 33;
+            grpCierre.TabIndex = 35;
             // 
             // chkListo
             // 
@@ -528,7 +537,7 @@
             chkListo.Location = new Point(14, 22);
             chkListo.Name = "chkListo";
             chkListo.Size = new Size(420, 24);
-            chkListo.TabIndex = 34;
+            chkListo.TabIndex = 36;
             // 
             // lblOrdenEntrega
             // 
@@ -536,7 +545,7 @@
             lblOrdenEntrega.Location = new Point(14, 60);
             lblOrdenEntrega.Name = "lblOrdenEntrega";
             lblOrdenEntrega.Size = new Size(120, 20);
-            lblOrdenEntrega.TabIndex = 35;
+            lblOrdenEntrega.TabIndex = 37;
             // 
             // txtOrdenEntrega
             // 
@@ -544,7 +553,7 @@
             txtOrdenEntrega.Location = new Point(140, 56);
             txtOrdenEntrega.Name = "txtOrdenEntrega";
             txtOrdenEntrega.Size = new Size(200, 23);
-            txtOrdenEntrega.TabIndex = 36;
+            txtOrdenEntrega.TabIndex = 38;
             // 
             // btnConfirmarPreparacion
             // 
@@ -556,7 +565,7 @@
             btnConfirmarPreparacion.Location = new Point(14, 96);
             btnConfirmarPreparacion.Name = "btnConfirmarPreparacion";
             btnConfirmarPreparacion.Size = new Size(200, 34);
-            btnConfirmarPreparacion.TabIndex = 37;
+            btnConfirmarPreparacion.TabIndex = 39;
             // 
             // btnReimprimir
             // 
@@ -565,7 +574,7 @@
             btnReimprimir.Location = new Point(222, 96);
             btnReimprimir.Name = "btnReimprimir";
             btnReimprimir.Size = new Size(110, 34);
-            btnReimprimir.TabIndex = 38;
+            btnReimprimir.TabIndex = 40;
             // 
             // btnReportarIncidente
             // 
@@ -574,7 +583,7 @@
             btnReportarIncidente.Location = new Point(340, 96);
             btnReportarIncidente.Name = "btnReportarIncidente";
             btnReportarIncidente.Size = new Size(104, 34);
-            btnReportarIncidente.TabIndex = 39;
+            btnReportarIncidente.TabIndex = 41;
             // 
             // EmpaquetadoPreparacionEntregasForm
             // 
@@ -582,7 +591,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             ClientSize = new Size(1334, 901);
-            Controls.Add(pnlEncabezado);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblEmpresa);
             Controls.Add(grpContexto);
             Controls.Add(grpPedidos);
             Controls.Add(grpDatosPedido);
@@ -591,9 +601,9 @@
             Controls.Add(grpPale);
             Controls.Add(grpCierre);
             Font = new Font("Segoe UI", 9F);
-            AutoScroll = true;
-            AutoScrollMinSize = new Size(1334, 901);
-            MinimumSize = new Size(640, 480);
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1334, 901);
+            MinimumSize = new Size(640, 480);
             WindowState = FormWindowState.Maximized;
             Name = "EmpaquetadoPreparacionEntregasForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -605,15 +615,9 @@
             grpDatosPedido.ResumeLayout(false);
             grpPedidos.ResumeLayout(false);
             grpContexto.ResumeLayout(false);
-            pnlEncabezado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvControl).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBultos).EndInit();
             ResumeLayout(false);
-            dgvControl.Rows.Add("SKU-001", "Remera de algodón", "80", "80", "", "");
-            dgvBultos.Rows.Add("B-001", "SKU-001", "Remera de algodón", "50");
         }
         #endregion
-        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblEmpresa;
         private System.Windows.Forms.GroupBox grpContexto;
@@ -638,13 +642,16 @@
         private System.Windows.Forms.Label lblDestino;
         private System.Windows.Forms.TextBox txtDestino;
         private System.Windows.Forms.GroupBox grpControl;
-        private System.Windows.Forms.DataGridView dgvControl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSku;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSolicitada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEntregada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colControlada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDiferencia;
+        private System.Windows.Forms.ListView lvControl;
+        private System.Windows.Forms.ColumnHeader lvControlCol0;
+        private System.Windows.Forms.ColumnHeader lvControlCol1;
+        private System.Windows.Forms.ColumnHeader lvControlCol2;
+        private System.Windows.Forms.ColumnHeader lvControlCol3;
+        private System.Windows.Forms.ColumnHeader lvControlCol4;
+        private System.Windows.Forms.ColumnHeader lvControlCol5;
+        private System.Windows.Forms.Label lblCantidadControlada;
+        private System.Windows.Forms.TextBox txtCantidadControlada;
+        private System.Windows.Forms.Button btnRegistrarControl;
         private System.Windows.Forms.GroupBox grpFulfillment;
         private System.Windows.Forms.Label lblIdBulto;
         private System.Windows.Forms.TextBox txtIdBulto;
@@ -653,11 +660,11 @@
         private System.Windows.Forms.Label lblCantBulto;
         private System.Windows.Forms.TextBox txtCantBulto;
         private System.Windows.Forms.Button btnAgregarBulto;
-        private System.Windows.Forms.DataGridView dgvBultos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBulto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSkuBulto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProductoBulto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCantBulto;
+        private System.Windows.Forms.ListView lvBultos;
+        private System.Windows.Forms.ColumnHeader lvBultosCol0;
+        private System.Windows.Forms.ColumnHeader lvBultosCol1;
+        private System.Windows.Forms.ColumnHeader lvBultosCol2;
+        private System.Windows.Forms.ColumnHeader lvBultosCol3;
         private System.Windows.Forms.GroupBox grpPale;
         private System.Windows.Forms.Label lblIdPale;
         private System.Windows.Forms.TextBox txtIdPale;

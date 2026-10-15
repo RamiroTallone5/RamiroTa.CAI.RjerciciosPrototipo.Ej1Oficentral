@@ -13,7 +13,8 @@
         {
             ListViewItem item_lvSelecciones_0 = new ListViewItem(new string[] { "OS-000071", "14/10/2026", "Segundo", "Fulfillment", "2", "2", "EMITIDA" }, -1);
             ListViewItem item_lvSelecciones_1 = new ListViewItem(new string[] { "OS-000072", "14/10/2026", "Segundo", "Palé cerrado", "1", "1", "EMITIDA" }, -1);
-            pnlEncabezado = new Panel();
+            ListViewItem item_lvRenglones_0 = new ListViewItem(new string[] { "Cliente Demo A", "SKU-001", "Remera de algodón", "12-43-2", "120", "", "OP-000181 (80); OP-000182 (40)" }, -1);
+            ListViewItem item_lvRenglones_1 = new ListViewItem(new string[] { "Cliente Demo A", "SKU-002", "Pantalón deportivo", "12-44-1", "30", "", "OP-000181 (30)" }, -1);
             lblTitulo = new Label();
             lblEmpresa = new Label();
             grpContexto = new GroupBox();
@@ -40,14 +41,17 @@
             txtCorteSel = new TextBox();
             lblEmitidaPor = new Label();
             txtEmitidaPor = new TextBox();
-            dgvRenglones = new DataGridView();
-            colCliente = new DataGridViewTextBoxColumn();
-            colSku = new DataGridViewTextBoxColumn();
-            colProducto = new DataGridViewTextBoxColumn();
-            colUbicacion = new DataGridViewTextBoxColumn();
-            colRequerida = new DataGridViewTextBoxColumn();
-            colRetirada = new DataGridViewTextBoxColumn();
-            colReparto = new DataGridViewTextBoxColumn();
+            lvRenglones = new ListView();
+            lvRenglonesCol0 = new ColumnHeader();
+            lvRenglonesCol1 = new ColumnHeader();
+            lvRenglonesCol2 = new ColumnHeader();
+            lvRenglonesCol3 = new ColumnHeader();
+            lvRenglonesCol4 = new ColumnHeader();
+            lvRenglonesCol5 = new ColumnHeader();
+            lvRenglonesCol6 = new ColumnHeader();
+            lblCantidadRetirada = new Label();
+            txtCantidadRetirada = new TextBox();
+            btnRegistrarRetiro = new Button();
             lblAyudaRetiro = new Label();
             grpConfirmacion = new GroupBox();
             lblObservacion = new Label();
@@ -57,43 +61,38 @@
             txtServicio = new TextBox();
             btnConfirmarEntrega = new Button();
             btnReportarIncidente = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvRenglones).BeginInit();
-            pnlEncabezado.SuspendLayout();
             grpContexto.SuspendLayout();
             grpSelecciones.SuspendLayout();
             grpDetalleSeleccion.SuspendLayout();
             grpConfirmacion.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlEncabezado
-            // 
-            pnlEncabezado.Controls.Add(lblTitulo);
-            pnlEncabezado.Controls.Add(lblEmpresa);
-            pnlEncabezado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlEncabezado.BackColor = Color.FromArgb(35, 80, 124);
-            pnlEncabezado.Location = new Point(0, 0);
-            pnlEncabezado.Name = "pnlEncabezado";
-            pnlEncabezado.Size = new Size(1320, 76);
-            pnlEncabezado.TabIndex = 0;
-            // 
             // lblTitulo
             // 
             lblTitulo.Text = "Selección y Entrega de Mercadería";
+            lblTitulo.BackColor = Color.FromArgb(35, 80, 124);
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTitulo.Padding = new Padding(24, 0, 0, 0);
             lblTitulo.Font = new Font("Segoe UI", 19F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(24, 13);
+            lblTitulo.Location = new Point(0, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(890, 34);
-            lblTitulo.TabIndex = 1;
+            lblTitulo.Size = new Size(1320, 50);
+            lblTitulo.TabIndex = 0;
             // 
             // lblEmpresa
             // 
             lblEmpresa.Text = "PAMPAZON  |  Operario de Almacén";
+            lblEmpresa.BackColor = Color.FromArgb(35, 80, 124);
+            lblEmpresa.TextAlign = ContentAlignment.MiddleLeft;
+            lblEmpresa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblEmpresa.Padding = new Padding(26, 0, 0, 0);
             lblEmpresa.ForeColor = Color.White;
-            lblEmpresa.Location = new Point(26, 48);
+            lblEmpresa.Location = new Point(0, 50);
             lblEmpresa.Name = "lblEmpresa";
-            lblEmpresa.Size = new Size(1050, 22);
-            lblEmpresa.TabIndex = 2;
+            lblEmpresa.Size = new Size(1320, 26);
+            lblEmpresa.TabIndex = 1;
             // 
             // grpContexto
             // 
@@ -107,7 +106,7 @@
             grpContexto.Location = new Point(16, 84);
             grpContexto.Name = "grpContexto";
             grpContexto.Size = new Size(1288, 72);
-            grpContexto.TabIndex = 3;
+            grpContexto.TabIndex = 2;
             // 
             // lblDeposito
             // 
@@ -115,7 +114,7 @@
             lblDeposito.Location = new Point(16, 30);
             lblDeposito.Name = "lblDeposito";
             lblDeposito.Size = new Size(68, 24);
-            lblDeposito.TabIndex = 4;
+            lblDeposito.TabIndex = 3;
             // 
             // cboDeposito
             // 
@@ -126,7 +125,7 @@
             cboDeposito.Location = new Point(90, 26);
             cboDeposito.Name = "cboDeposito";
             cboDeposito.Size = new Size(373, 23);
-            cboDeposito.TabIndex = 5;
+            cboDeposito.TabIndex = 4;
             // 
             // lblRol
             // 
@@ -134,7 +133,7 @@
             lblRol.Location = new Point(480, 29);
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(260, 24);
-            lblRol.TabIndex = 6;
+            lblRol.TabIndex = 5;
             // 
             // lblFecha
             // 
@@ -142,7 +141,7 @@
             lblFecha.Location = new Point(780, 30);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(72, 24);
-            lblFecha.TabIndex = 7;
+            lblFecha.TabIndex = 6;
             // 
             // dtpFechaTrabajo
             // 
@@ -152,7 +151,7 @@
             dtpFechaTrabajo.Location = new Point(856, 26);
             dtpFechaTrabajo.Name = "dtpFechaTrabajo";
             dtpFechaTrabajo.Size = new Size(410, 23);
-            dtpFechaTrabajo.TabIndex = 8;
+            dtpFechaTrabajo.TabIndex = 7;
             // 
             // grpSelecciones
             // 
@@ -162,7 +161,7 @@
             grpSelecciones.Location = new Point(16, 170);
             grpSelecciones.Name = "grpSelecciones";
             grpSelecciones.Size = new Size(1288, 200);
-            grpSelecciones.TabIndex = 9;
+            grpSelecciones.TabIndex = 8;
             // 
             // lvSelecciones
             // 
@@ -173,7 +172,7 @@
             lvSelecciones.Location = new Point(12, 26);
             lvSelecciones.Name = "lvSelecciones";
             lvSelecciones.Size = new Size(1262, 162);
-            lvSelecciones.TabIndex = 10;
+            lvSelecciones.TabIndex = 9;
             lvSelecciones.UseCompatibleStateImageBehavior = false;
             lvSelecciones.View = View.Details;
             // 
@@ -222,14 +221,17 @@
             grpDetalleSeleccion.Controls.Add(txtCorteSel);
             grpDetalleSeleccion.Controls.Add(lblEmitidaPor);
             grpDetalleSeleccion.Controls.Add(txtEmitidaPor);
-            grpDetalleSeleccion.Controls.Add(dgvRenglones);
+            grpDetalleSeleccion.Controls.Add(lvRenglones);
+            grpDetalleSeleccion.Controls.Add(lblCantidadRetirada);
+            grpDetalleSeleccion.Controls.Add(txtCantidadRetirada);
+            grpDetalleSeleccion.Controls.Add(btnRegistrarRetiro);
             grpDetalleSeleccion.Controls.Add(lblAyudaRetiro);
             grpDetalleSeleccion.TabStop = false;
             grpDetalleSeleccion.Text = "Detalle de la selección";
             grpDetalleSeleccion.Location = new Point(16, 382);
             grpDetalleSeleccion.Name = "grpDetalleSeleccion";
             grpDetalleSeleccion.Size = new Size(1288, 332);
-            grpDetalleSeleccion.TabIndex = 11;
+            grpDetalleSeleccion.TabIndex = 10;
             // 
             // lblOrdenSeleccion
             // 
@@ -237,7 +239,7 @@
             lblOrdenSeleccion.Location = new Point(14, 26);
             lblOrdenSeleccion.Name = "lblOrdenSeleccion";
             lblOrdenSeleccion.Size = new Size(140, 20);
-            lblOrdenSeleccion.TabIndex = 12;
+            lblOrdenSeleccion.TabIndex = 11;
             // 
             // txtOrdenSeleccion
             // 
@@ -245,7 +247,7 @@
             txtOrdenSeleccion.Location = new Point(14, 48);
             txtOrdenSeleccion.Name = "txtOrdenSeleccion";
             txtOrdenSeleccion.Size = new Size(150, 23);
-            txtOrdenSeleccion.TabIndex = 13;
+            txtOrdenSeleccion.TabIndex = 12;
             // 
             // lblModalidadSel
             // 
@@ -253,7 +255,7 @@
             lblModalidadSel.Location = new Point(184, 26);
             lblModalidadSel.Name = "lblModalidadSel";
             lblModalidadSel.Size = new Size(140, 20);
-            lblModalidadSel.TabIndex = 14;
+            lblModalidadSel.TabIndex = 13;
             // 
             // txtModalidadSel
             // 
@@ -261,7 +263,7 @@
             txtModalidadSel.Location = new Point(184, 48);
             txtModalidadSel.Name = "txtModalidadSel";
             txtModalidadSel.Size = new Size(160, 23);
-            txtModalidadSel.TabIndex = 15;
+            txtModalidadSel.TabIndex = 14;
             // 
             // lblCorteSel
             // 
@@ -269,7 +271,7 @@
             lblCorteSel.Location = new Point(364, 26);
             lblCorteSel.Name = "lblCorteSel";
             lblCorteSel.Size = new Size(140, 20);
-            lblCorteSel.TabIndex = 16;
+            lblCorteSel.TabIndex = 15;
             // 
             // txtCorteSel
             // 
@@ -277,15 +279,15 @@
             txtCorteSel.Location = new Point(364, 48);
             txtCorteSel.Name = "txtCorteSel";
             txtCorteSel.Size = new Size(120, 23);
-            txtCorteSel.TabIndex = 17;
+            txtCorteSel.TabIndex = 16;
             // 
             // lblEmitidaPor
             // 
             lblEmitidaPor.Text = "Emitida por (Jefe de Preparación)";
             lblEmitidaPor.Location = new Point(504, 26);
             lblEmitidaPor.Name = "lblEmitidaPor";
-            lblEmitidaPor.Size = new Size(200, 20);
-            lblEmitidaPor.TabIndex = 18;
+            lblEmitidaPor.Size = new Size(220, 20);
+            lblEmitidaPor.TabIndex = 17;
             // 
             // txtEmitidaPor
             // 
@@ -293,76 +295,90 @@
             txtEmitidaPor.Location = new Point(504, 48);
             txtEmitidaPor.Name = "txtEmitidaPor";
             txtEmitidaPor.Size = new Size(260, 23);
-            txtEmitidaPor.TabIndex = 19;
+            txtEmitidaPor.TabIndex = 18;
             // 
-            // dgvRenglones
+            // lvRenglones
             // 
-            dgvRenglones.AllowUserToAddRows = false;
-            dgvRenglones.AllowUserToDeleteRows = false;
-            dgvRenglones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRenglones.Columns.AddRange(new DataGridViewColumn[] { colCliente, colSku, colProducto, colUbicacion, colRequerida, colRetirada, colReparto });
-            dgvRenglones.RowHeadersVisible = false;
-            dgvRenglones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRenglones.Location = new Point(12, 86);
-            dgvRenglones.Name = "dgvRenglones";
-            dgvRenglones.Size = new Size(1262, 200);
-            dgvRenglones.TabIndex = 20;
+            lvRenglones.Columns.AddRange(new ColumnHeader[] { lvRenglonesCol0, lvRenglonesCol1, lvRenglonesCol2, lvRenglonesCol3, lvRenglonesCol4, lvRenglonesCol5, lvRenglonesCol6 });
+            lvRenglones.FullRowSelect = true;
+            lvRenglones.GridLines = true;
+            lvRenglones.Items.AddRange(new ListViewItem[] { item_lvRenglones_0, item_lvRenglones_1 });
+            lvRenglones.Location = new Point(12, 86);
+            lvRenglones.Name = "lvRenglones";
+            lvRenglones.Size = new Size(1262, 170);
+            lvRenglones.TabIndex = 19;
+            lvRenglones.UseCompatibleStateImageBehavior = false;
+            lvRenglones.View = View.Details;
             // 
-            // colCliente
+            // lvRenglonesCol0
             // 
-            colCliente.HeaderText = "Cliente";
-            colCliente.Name = "colCliente";
-            colCliente.Width = 190;
-            colCliente.ReadOnly = true;
+            lvRenglonesCol0.Text = "Cliente";
+            lvRenglonesCol0.Width = 190;
             // 
-            // colSku
+            // lvRenglonesCol1
             // 
-            colSku.HeaderText = "SKU";
-            colSku.Name = "colSku";
-            colSku.Width = 90;
-            colSku.ReadOnly = true;
+            lvRenglonesCol1.Text = "SKU";
+            lvRenglonesCol1.Width = 90;
             // 
-            // colProducto
+            // lvRenglonesCol2
             // 
-            colProducto.HeaderText = "Producto";
-            colProducto.Name = "colProducto";
-            colProducto.Width = 220;
-            colProducto.ReadOnly = true;
+            lvRenglonesCol2.Text = "Producto";
+            lvRenglonesCol2.Width = 220;
             // 
-            // colUbicacion
+            // lvRenglonesCol3
             // 
-            colUbicacion.HeaderText = "Ubicación (X-Y-Z)";
-            colUbicacion.Name = "colUbicacion";
-            colUbicacion.Width = 130;
-            colUbicacion.ReadOnly = true;
+            lvRenglonesCol3.Text = "Ubicación (X-Y-Z)";
+            lvRenglonesCol3.Width = 130;
             // 
-            // colRequerida
+            // lvRenglonesCol4
             // 
-            colRequerida.HeaderText = "Cantidad requerida";
-            colRequerida.Name = "colRequerida";
-            colRequerida.Width = 130;
-            colRequerida.ReadOnly = true;
+            lvRenglonesCol4.Text = "Cantidad requerida";
+            lvRenglonesCol4.Width = 130;
             // 
-            // colRetirada
+            // lvRenglonesCol5
             // 
-            colRetirada.HeaderText = "Cantidad retirada";
-            colRetirada.Name = "colRetirada";
-            colRetirada.Width = 130;
+            lvRenglonesCol5.Text = "Cantidad retirada";
+            lvRenglonesCol5.Width = 130;
             // 
-            // colReparto
+            // lvRenglonesCol6
             // 
-            colReparto.HeaderText = "Reparto entre órdenes de preparación";
-            colReparto.Name = "colReparto";
-            colReparto.Width = 330;
-            colReparto.ReadOnly = true;
+            lvRenglonesCol6.Text = "Reparto entre órdenes de preparación";
+            lvRenglonesCol6.Width = 330;
+            // 
+            // lblCantidadRetirada
+            // 
+            lblCantidadRetirada.Text = "Cantidad retirada del renglón";
+            lblCantidadRetirada.Location = new Point(14, 266);
+            lblCantidadRetirada.Name = "lblCantidadRetirada";
+            lblCantidadRetirada.Size = new Size(180, 20);
+            lblCantidadRetirada.TabIndex = 20;
+            // 
+            // txtCantidadRetirada
+            // 
+            txtCantidadRetirada.Location = new Point(14, 288);
+            txtCantidadRetirada.Name = "txtCantidadRetirada";
+            txtCantidadRetirada.Size = new Size(140, 23);
+            txtCantidadRetirada.TabIndex = 21;
+            // 
+            // btnRegistrarRetiro
+            // 
+            btnRegistrarRetiro.BackColor = Color.FromArgb(35, 80, 124);
+            btnRegistrarRetiro.FlatStyle = FlatStyle.Flat;
+            btnRegistrarRetiro.ForeColor = Color.White;
+            btnRegistrarRetiro.Text = "Registrar cantidad retirada";
+            btnRegistrarRetiro.UseVisualStyleBackColor = false;
+            btnRegistrarRetiro.Location = new Point(200, 282);
+            btnRegistrarRetiro.Name = "btnRegistrarRetiro";
+            btnRegistrarRetiro.Size = new Size(260, 34);
+            btnRegistrarRetiro.TabIndex = 22;
             // 
             // lblAyudaRetiro
             // 
-            lblAyudaRetiro.Text = "Ingrese la cantidad retirada de cada renglón. Debe coincidir con la cantidad requerida.";
-            lblAyudaRetiro.Location = new Point(14, 296);
+            lblAyudaRetiro.Text = "Elija un renglón, ingrese la cantidad retirada. Debe coincidir con la requerida.";
+            lblAyudaRetiro.Location = new Point(480, 290);
             lblAyudaRetiro.Name = "lblAyudaRetiro";
-            lblAyudaRetiro.Size = new Size(1240, 24);
-            lblAyudaRetiro.TabIndex = 21;
+            lblAyudaRetiro.Size = new Size(800, 24);
+            lblAyudaRetiro.TabIndex = 23;
             // 
             // grpConfirmacion
             // 
@@ -378,15 +394,15 @@
             grpConfirmacion.Location = new Point(16, 726);
             grpConfirmacion.Name = "grpConfirmacion";
             grpConfirmacion.Size = new Size(1288, 140);
-            grpConfirmacion.TabIndex = 22;
+            grpConfirmacion.TabIndex = 24;
             // 
             // lblObservacion
             // 
             lblObservacion.Text = "Observación de diferencia (hasta 200 caracteres)";
             lblObservacion.Location = new Point(14, 22);
             lblObservacion.Name = "lblObservacion";
-            lblObservacion.Size = new Size(300, 20);
-            lblObservacion.TabIndex = 23;
+            lblObservacion.Size = new Size(320, 20);
+            lblObservacion.TabIndex = 25;
             // 
             // txtObservacion
             // 
@@ -395,7 +411,7 @@
             txtObservacion.Location = new Point(14, 44);
             txtObservacion.Name = "txtObservacion";
             txtObservacion.Size = new Size(560, 76);
-            txtObservacion.TabIndex = 24;
+            txtObservacion.TabIndex = 26;
             // 
             // chkEntregaPreparacion
             // 
@@ -404,7 +420,7 @@
             chkEntregaPreparacion.Location = new Point(600, 26);
             chkEntregaPreparacion.Name = "chkEntregaPreparacion";
             chkEntregaPreparacion.Size = new Size(390, 24);
-            chkEntregaPreparacion.TabIndex = 25;
+            chkEntregaPreparacion.TabIndex = 27;
             // 
             // lblServicio
             // 
@@ -412,7 +428,7 @@
             lblServicio.Location = new Point(600, 70);
             lblServicio.Name = "lblServicio";
             lblServicio.Size = new Size(150, 20);
-            lblServicio.TabIndex = 26;
+            lblServicio.TabIndex = 28;
             // 
             // txtServicio
             // 
@@ -420,7 +436,7 @@
             txtServicio.Location = new Point(756, 66);
             txtServicio.Name = "txtServicio";
             txtServicio.Size = new Size(200, 23);
-            txtServicio.TabIndex = 27;
+            txtServicio.TabIndex = 29;
             // 
             // btnConfirmarEntrega
             // 
@@ -432,7 +448,7 @@
             btnConfirmarEntrega.Location = new Point(1010, 26);
             btnConfirmarEntrega.Name = "btnConfirmarEntrega";
             btnConfirmarEntrega.Size = new Size(260, 34);
-            btnConfirmarEntrega.TabIndex = 28;
+            btnConfirmarEntrega.TabIndex = 30;
             // 
             // btnReportarIncidente
             // 
@@ -441,7 +457,7 @@
             btnReportarIncidente.Location = new Point(1010, 70);
             btnReportarIncidente.Name = "btnReportarIncidente";
             btnReportarIncidente.Size = new Size(260, 34);
-            btnReportarIncidente.TabIndex = 29;
+            btnReportarIncidente.TabIndex = 31;
             // 
             // SeleccionEntregaMercaderiaForm
             // 
@@ -449,15 +465,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             ClientSize = new Size(1334, 901);
-            Controls.Add(pnlEncabezado);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblEmpresa);
             Controls.Add(grpContexto);
             Controls.Add(grpSelecciones);
             Controls.Add(grpDetalleSeleccion);
             Controls.Add(grpConfirmacion);
             Font = new Font("Segoe UI", 9F);
-            AutoScroll = true;
-            AutoScrollMinSize = new Size(1334, 901);
-            MinimumSize = new Size(640, 480);
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1334, 901);
+            MinimumSize = new Size(640, 480);
             WindowState = FormWindowState.Maximized;
             Name = "SeleccionEntregaMercaderiaForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -466,14 +483,9 @@
             grpDetalleSeleccion.ResumeLayout(false);
             grpSelecciones.ResumeLayout(false);
             grpContexto.ResumeLayout(false);
-            pnlEncabezado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvRenglones).EndInit();
             ResumeLayout(false);
-            dgvRenglones.Rows.Add("Cliente Demo A", "SKU-001", "Remera de algodón", "12-43-2", "120", "", "OP-000181 (80); OP-000182 (40)");
-            dgvRenglones.Rows.Add("Cliente Demo A", "SKU-002", "Pantalón deportivo", "12-44-1", "30", "", "OP-000181 (30)");
         }
         #endregion
-        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblEmpresa;
         private System.Windows.Forms.GroupBox grpContexto;
@@ -500,14 +512,17 @@
         private System.Windows.Forms.TextBox txtCorteSel;
         private System.Windows.Forms.Label lblEmitidaPor;
         private System.Windows.Forms.TextBox txtEmitidaPor;
-        private System.Windows.Forms.DataGridView dgvRenglones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSku;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUbicacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRequerida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRetirada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colReparto;
+        private System.Windows.Forms.ListView lvRenglones;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol0;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol1;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol2;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol3;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol4;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol5;
+        private System.Windows.Forms.ColumnHeader lvRenglonesCol6;
+        private System.Windows.Forms.Label lblCantidadRetirada;
+        private System.Windows.Forms.TextBox txtCantidadRetirada;
+        private System.Windows.Forms.Button btnRegistrarRetiro;
         private System.Windows.Forms.Label lblAyudaRetiro;
         private System.Windows.Forms.GroupBox grpConfirmacion;
         private System.Windows.Forms.Label lblObservacion;

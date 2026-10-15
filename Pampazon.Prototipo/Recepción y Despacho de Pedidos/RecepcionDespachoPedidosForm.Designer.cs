@@ -13,9 +13,9 @@
         {
             ListViewItem item_lvPreparadas_0 = new ListViewItem(new string[] { "OE-000051", "OP-000181", "Cliente Demo A", "Cliente", "Destino demo A", "2", "PREPARADA" }, -1);
             ListViewItem item_lvPreparadas_1 = new ListViewItem(new string[] { "OE-000052", "TR-000026", "Cliente Demo A", "Traslado interno", "Destino demo B", "1", "PREPARADA" }, -1);
+            ListViewItem item_lvControlRecepcion_0 = new ListViewItem(new string[] { "SKU-001", "Remera de algodón", "80", "", "" }, -1);
             ListViewItem item_lvEnDespacho_0 = new ListViewItem(new string[] { "OE-000051", "OP-000181", "Cliente Demo A", "Cliente", "Destino demo A", "2", "EN DESPACHO" }, -1);
             ListViewItem item_lvEnDespacho_1 = new ListViewItem(new string[] { "OE-000052", "TR-000026", "Cliente Demo A", "Traslado interno", "Destino demo B", "1", "EN DESPACHO" }, -1);
-            pnlEncabezado = new Panel();
             lblTitulo = new Label();
             lblEmpresa = new Label();
             grpContexto = new GroupBox();
@@ -24,9 +24,7 @@
             lblRol = new Label();
             lblFecha = new Label();
             dtpFechaTrabajo = new DateTimePicker();
-            tabDespachoPedidos = new TabControl();
-            tabRecepcion = new TabPage();
-            grpBuscarEntrega = new GroupBox();
+            grpRecepcion = new GroupBox();
             lblBuscarEntrega = new Label();
             txtBuscarEntrega = new TextBox();
             btnBuscar = new Button();
@@ -40,19 +38,22 @@
             lvPreparadasCol4 = new ColumnHeader();
             lvPreparadasCol5 = new ColumnHeader();
             lvPreparadasCol6 = new ColumnHeader();
-            grpControlRecepcion = new GroupBox();
-            dgvControlRecepcion = new DataGridView();
-            colSkuR = new DataGridViewTextBoxColumn();
-            colProductoR = new DataGridViewTextBoxColumn();
-            colCantOrden = new DataGridViewTextBoxColumn();
-            colRecibida = new DataGridViewTextBoxColumn();
-            colDifR = new DataGridViewTextBoxColumn();
+            lblControlBultos = new Label();
+            lvControlRecepcion = new ListView();
+            lvControlRecepcionCol0 = new ColumnHeader();
+            lvControlRecepcionCol1 = new ColumnHeader();
+            lvControlRecepcionCol2 = new ColumnHeader();
+            lvControlRecepcionCol3 = new ColumnHeader();
+            lvControlRecepcionCol4 = new ColumnHeader();
+            lblCantidadRecibida = new Label();
+            txtCantidadRecibida = new TextBox();
+            btnRegistrarRecepcion = new Button();
             lblObsRecepcion = new Label();
             txtObsRecepcion = new TextBox();
             chkRecepcionCompleta = new CheckBox();
             btnConfirmarRecepcion = new Button();
             btnReportarIncidenteRecepcion = new Button();
-            tabDespacho = new TabPage();
+            grpDespacho = new GroupBox();
             lblListaEnDespacho = new Label();
             lvEnDespacho = new ListView();
             lvEnDespachoCol0 = new ColumnHeader();
@@ -62,7 +63,6 @@
             lvEnDespachoCol4 = new ColumnHeader();
             lvEnDespachoCol5 = new ColumnHeader();
             lvEnDespachoCol6 = new ColumnHeader();
-            grpRetiro = new GroupBox();
             lblTransportista = new Label();
             txtTransportista = new TextBox();
             lblFlete = new Label();
@@ -76,46 +76,37 @@
             lblAvisoDespacho = new Label();
             btnCerrarDespacho = new Button();
             btnReportarIncidenteDespacho = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvControlRecepcion).BeginInit();
-            pnlEncabezado.SuspendLayout();
             grpContexto.SuspendLayout();
-            tabDespachoPedidos.SuspendLayout();
-            tabRecepcion.SuspendLayout();
-            grpBuscarEntrega.SuspendLayout();
-            grpControlRecepcion.SuspendLayout();
-            tabDespacho.SuspendLayout();
-            grpRetiro.SuspendLayout();
+            grpRecepcion.SuspendLayout();
+            grpDespacho.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlEncabezado
-            // 
-            pnlEncabezado.Controls.Add(lblTitulo);
-            pnlEncabezado.Controls.Add(lblEmpresa);
-            pnlEncabezado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlEncabezado.BackColor = Color.FromArgb(35, 80, 124);
-            pnlEncabezado.Location = new Point(0, 0);
-            pnlEncabezado.Name = "pnlEncabezado";
-            pnlEncabezado.Size = new Size(1320, 76);
-            pnlEncabezado.TabIndex = 0;
             // 
             // lblTitulo
             // 
             lblTitulo.Text = "Recepción y Despacho de Pedidos";
+            lblTitulo.BackColor = Color.FromArgb(35, 80, 124);
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTitulo.Padding = new Padding(24, 0, 0, 0);
             lblTitulo.Font = new Font("Segoe UI", 19F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(24, 13);
+            lblTitulo.Location = new Point(0, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(890, 34);
-            lblTitulo.TabIndex = 1;
+            lblTitulo.Size = new Size(1320, 50);
+            lblTitulo.TabIndex = 0;
             // 
             // lblEmpresa
             // 
             lblEmpresa.Text = "PAMPAZON  |  Operario de Despacho";
+            lblEmpresa.BackColor = Color.FromArgb(35, 80, 124);
+            lblEmpresa.TextAlign = ContentAlignment.MiddleLeft;
+            lblEmpresa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblEmpresa.Padding = new Padding(26, 0, 0, 0);
             lblEmpresa.ForeColor = Color.White;
-            lblEmpresa.Location = new Point(26, 48);
+            lblEmpresa.Location = new Point(0, 50);
             lblEmpresa.Name = "lblEmpresa";
-            lblEmpresa.Size = new Size(1050, 22);
-            lblEmpresa.TabIndex = 2;
+            lblEmpresa.Size = new Size(1320, 26);
+            lblEmpresa.TabIndex = 1;
             // 
             // grpContexto
             // 
@@ -129,7 +120,7 @@
             grpContexto.Location = new Point(16, 84);
             grpContexto.Name = "grpContexto";
             grpContexto.Size = new Size(1288, 72);
-            grpContexto.TabIndex = 3;
+            grpContexto.TabIndex = 2;
             // 
             // lblDeposito
             // 
@@ -137,7 +128,7 @@
             lblDeposito.Location = new Point(16, 30);
             lblDeposito.Name = "lblDeposito";
             lblDeposito.Size = new Size(68, 24);
-            lblDeposito.TabIndex = 4;
+            lblDeposito.TabIndex = 3;
             // 
             // cboDeposito
             // 
@@ -148,7 +139,7 @@
             cboDeposito.Location = new Point(90, 26);
             cboDeposito.Name = "cboDeposito";
             cboDeposito.Size = new Size(373, 23);
-            cboDeposito.TabIndex = 5;
+            cboDeposito.TabIndex = 4;
             // 
             // lblRol
             // 
@@ -156,7 +147,7 @@
             lblRol.Location = new Point(480, 29);
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(260, 24);
-            lblRol.TabIndex = 6;
+            lblRol.TabIndex = 5;
             // 
             // lblFecha
             // 
@@ -164,7 +155,7 @@
             lblFecha.Location = new Point(780, 30);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(72, 24);
-            lblFecha.TabIndex = 7;
+            lblFecha.TabIndex = 6;
             // 
             // dtpFechaTrabajo
             // 
@@ -174,65 +165,48 @@
             dtpFechaTrabajo.Location = new Point(856, 26);
             dtpFechaTrabajo.Name = "dtpFechaTrabajo";
             dtpFechaTrabajo.Size = new Size(410, 23);
-            dtpFechaTrabajo.TabIndex = 8;
+            dtpFechaTrabajo.TabIndex = 7;
             // 
-            // tabDespachoPedidos
+            // grpRecepcion
             // 
-            tabDespachoPedidos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabDespachoPedidos.Controls.Add(tabRecepcion);
-            tabDespachoPedidos.Controls.Add(tabDespacho);
-            tabDespachoPedidos.SelectedIndex = 0;
-            tabDespachoPedidos.Location = new Point(16, 170);
-            tabDespachoPedidos.Name = "tabDespachoPedidos";
-            tabDespachoPedidos.Size = new Size(1288, 684);
-            tabDespachoPedidos.TabIndex = 9;
-            // 
-            // tabRecepcion
-            // 
-            tabRecepcion.Controls.Add(grpBuscarEntrega);
-            tabRecepcion.Controls.Add(lblListaPreparadas);
-            tabRecepcion.Controls.Add(lvPreparadas);
-            tabRecepcion.Controls.Add(grpControlRecepcion);
-            tabRecepcion.Controls.Add(lblObsRecepcion);
-            tabRecepcion.Controls.Add(txtObsRecepcion);
-            tabRecepcion.Controls.Add(chkRecepcionCompleta);
-            tabRecepcion.Controls.Add(btnConfirmarRecepcion);
-            tabRecepcion.Controls.Add(btnReportarIncidenteRecepcion);
-            tabRecepcion.Text = "Recepción de preparados";
-            tabRecepcion.UseVisualStyleBackColor = true;
-            tabRecepcion.Location = new Point(4, 24);
-            tabRecepcion.Name = "tabRecepcion";
-            tabRecepcion.Size = new Size(1280, 656);
-            tabRecepcion.TabIndex = 10;
-            // 
-            // grpBuscarEntrega
-            // 
-            grpBuscarEntrega.Controls.Add(lblBuscarEntrega);
-            grpBuscarEntrega.Controls.Add(txtBuscarEntrega);
-            grpBuscarEntrega.Controls.Add(btnBuscar);
-            grpBuscarEntrega.Controls.Add(btnLimpiar);
-            grpBuscarEntrega.TabStop = false;
-            grpBuscarEntrega.Text = "Buscar orden de entrega";
-            grpBuscarEntrega.Location = new Point(12, 10);
-            grpBuscarEntrega.Name = "grpBuscarEntrega";
-            grpBuscarEntrega.Size = new Size(1250, 80);
-            grpBuscarEntrega.TabIndex = 11;
+            grpRecepcion.Controls.Add(lblBuscarEntrega);
+            grpRecepcion.Controls.Add(txtBuscarEntrega);
+            grpRecepcion.Controls.Add(btnBuscar);
+            grpRecepcion.Controls.Add(btnLimpiar);
+            grpRecepcion.Controls.Add(lblListaPreparadas);
+            grpRecepcion.Controls.Add(lvPreparadas);
+            grpRecepcion.Controls.Add(lblControlBultos);
+            grpRecepcion.Controls.Add(lvControlRecepcion);
+            grpRecepcion.Controls.Add(lblCantidadRecibida);
+            grpRecepcion.Controls.Add(txtCantidadRecibida);
+            grpRecepcion.Controls.Add(btnRegistrarRecepcion);
+            grpRecepcion.Controls.Add(lblObsRecepcion);
+            grpRecepcion.Controls.Add(txtObsRecepcion);
+            grpRecepcion.Controls.Add(chkRecepcionCompleta);
+            grpRecepcion.Controls.Add(btnConfirmarRecepcion);
+            grpRecepcion.Controls.Add(btnReportarIncidenteRecepcion);
+            grpRecepcion.TabStop = false;
+            grpRecepcion.Text = "Recepción de pedidos preparados";
+            grpRecepcion.Location = new Point(16, 170);
+            grpRecepcion.Name = "grpRecepcion";
+            grpRecepcion.Size = new Size(1288, 570);
+            grpRecepcion.TabIndex = 8;
             // 
             // lblBuscarEntrega
             // 
             lblBuscarEntrega.Text = "N.º de orden de entrega";
-            lblBuscarEntrega.Location = new Point(14, 22);
+            lblBuscarEntrega.Location = new Point(14, 26);
             lblBuscarEntrega.Name = "lblBuscarEntrega";
             lblBuscarEntrega.Size = new Size(200, 22);
-            lblBuscarEntrega.TabIndex = 12;
+            lblBuscarEntrega.TabIndex = 9;
             // 
             // txtBuscarEntrega
             // 
             txtBuscarEntrega.MaxLength = 30;
-            txtBuscarEntrega.Location = new Point(14, 45);
+            txtBuscarEntrega.Location = new Point(14, 48);
             txtBuscarEntrega.Name = "txtBuscarEntrega";
             txtBuscarEntrega.Size = new Size(200, 23);
-            txtBuscarEntrega.TabIndex = 13;
+            txtBuscarEntrega.TabIndex = 10;
             // 
             // btnBuscar
             // 
@@ -241,28 +215,28 @@
             btnBuscar.ForeColor = Color.White;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Location = new Point(230, 38);
+            btnBuscar.Location = new Point(230, 42);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(160, 34);
-            btnBuscar.TabIndex = 14;
+            btnBuscar.TabIndex = 11;
             // 
             // btnLimpiar
             // 
             btnLimpiar.Text = "Limpiar";
             btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Location = new Point(400, 38);
+            btnLimpiar.Location = new Point(400, 42);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(160, 34);
-            btnLimpiar.TabIndex = 15;
+            btnLimpiar.TabIndex = 12;
             // 
             // lblListaPreparadas
             // 
             lblListaPreparadas.Text = "Órdenes de entrega de pedidos preparados";
             lblListaPreparadas.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblListaPreparadas.Location = new Point(14, 102);
+            lblListaPreparadas.Location = new Point(14, 90);
             lblListaPreparadas.Name = "lblListaPreparadas";
-            lblListaPreparadas.Size = new Size(950, 24);
-            lblListaPreparadas.TabIndex = 16;
+            lblListaPreparadas.Size = new Size(700, 22);
+            lblListaPreparadas.TabIndex = 13;
             // 
             // lvPreparadas
             // 
@@ -270,10 +244,10 @@
             lvPreparadas.FullRowSelect = true;
             lvPreparadas.GridLines = true;
             lvPreparadas.Items.AddRange(new ListViewItem[] { item_lvPreparadas_0, item_lvPreparadas_1 });
-            lvPreparadas.Location = new Point(14, 132);
+            lvPreparadas.Location = new Point(14, 114);
             lvPreparadas.Name = "lvPreparadas";
-            lvPreparadas.Size = new Size(1248, 130);
-            lvPreparadas.TabIndex = 17;
+            lvPreparadas.Size = new Size(1258, 110);
+            lvPreparadas.TabIndex = 14;
             lvPreparadas.UseCompatibleStateImageBehavior = false;
             lvPreparadas.View = View.Details;
             // 
@@ -312,67 +286,84 @@
             lvPreparadasCol6.Text = "Estado";
             lvPreparadasCol6.Width = 140;
             // 
-            // grpControlRecepcion
+            // lblControlBultos
             // 
-            grpControlRecepcion.Controls.Add(dgvControlRecepcion);
-            grpControlRecepcion.TabStop = false;
-            grpControlRecepcion.Text = "Control de bultos recibidos";
-            grpControlRecepcion.Location = new Point(12, 274);
-            grpControlRecepcion.Name = "grpControlRecepcion";
-            grpControlRecepcion.Size = new Size(1250, 200);
-            grpControlRecepcion.TabIndex = 18;
+            lblControlBultos.Text = "Control de bultos recibidos";
+            lblControlBultos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblControlBultos.Location = new Point(14, 234);
+            lblControlBultos.Name = "lblControlBultos";
+            lblControlBultos.Size = new Size(700, 22);
+            lblControlBultos.TabIndex = 15;
             // 
-            // dgvControlRecepcion
+            // lvControlRecepcion
             // 
-            dgvControlRecepcion.AllowUserToAddRows = false;
-            dgvControlRecepcion.AllowUserToDeleteRows = false;
-            dgvControlRecepcion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvControlRecepcion.Columns.AddRange(new DataGridViewColumn[] { colSkuR, colProductoR, colCantOrden, colRecibida, colDifR });
-            dgvControlRecepcion.RowHeadersVisible = false;
-            dgvControlRecepcion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvControlRecepcion.Location = new Point(12, 24);
-            dgvControlRecepcion.Name = "dgvControlRecepcion";
-            dgvControlRecepcion.Size = new Size(1224, 160);
-            dgvControlRecepcion.TabIndex = 19;
+            lvControlRecepcion.Columns.AddRange(new ColumnHeader[] { lvControlRecepcionCol0, lvControlRecepcionCol1, lvControlRecepcionCol2, lvControlRecepcionCol3, lvControlRecepcionCol4 });
+            lvControlRecepcion.FullRowSelect = true;
+            lvControlRecepcion.GridLines = true;
+            lvControlRecepcion.Items.AddRange(new ListViewItem[] { item_lvControlRecepcion_0 });
+            lvControlRecepcion.Location = new Point(14, 258);
+            lvControlRecepcion.Name = "lvControlRecepcion";
+            lvControlRecepcion.Size = new Size(1258, 100);
+            lvControlRecepcion.TabIndex = 16;
+            lvControlRecepcion.UseCompatibleStateImageBehavior = false;
+            lvControlRecepcion.View = View.Details;
             // 
-            // colSkuR
+            // lvControlRecepcionCol0
             // 
-            colSkuR.HeaderText = "SKU";
-            colSkuR.Name = "colSkuR";
-            colSkuR.Width = 110;
-            colSkuR.ReadOnly = true;
+            lvControlRecepcionCol0.Text = "SKU";
+            lvControlRecepcionCol0.Width = 110;
             // 
-            // colProductoR
+            // lvControlRecepcionCol1
             // 
-            colProductoR.HeaderText = "Producto";
-            colProductoR.Name = "colProductoR";
-            colProductoR.Width = 300;
-            colProductoR.ReadOnly = true;
+            lvControlRecepcionCol1.Text = "Producto";
+            lvControlRecepcionCol1.Width = 300;
             // 
-            // colCantOrden
+            // lvControlRecepcionCol2
             // 
-            colCantOrden.HeaderText = "Cantidad según la orden";
-            colCantOrden.Name = "colCantOrden";
-            colCantOrden.Width = 200;
-            colCantOrden.ReadOnly = true;
+            lvControlRecepcionCol2.Text = "Cantidad según la orden";
+            lvControlRecepcionCol2.Width = 200;
             // 
-            // colRecibida
+            // lvControlRecepcionCol3
             // 
-            colRecibida.HeaderText = "Cantidad recibida";
-            colRecibida.Name = "colRecibida";
-            colRecibida.Width = 170;
+            lvControlRecepcionCol3.Text = "Cantidad recibida";
+            lvControlRecepcionCol3.Width = 170;
             // 
-            // colDifR
+            // lvControlRecepcionCol4
             // 
-            colDifR.HeaderText = "Diferencia";
-            colDifR.Name = "colDifR";
-            colDifR.Width = 140;
-            colDifR.ReadOnly = true;
+            lvControlRecepcionCol4.Text = "Diferencia";
+            lvControlRecepcionCol4.Width = 140;
+            // 
+            // lblCantidadRecibida
+            // 
+            lblCantidadRecibida.Text = "Cantidad recibida";
+            lblCantidadRecibida.Location = new Point(14, 368);
+            lblCantidadRecibida.Name = "lblCantidadRecibida";
+            lblCantidadRecibida.Size = new Size(180, 20);
+            lblCantidadRecibida.TabIndex = 17;
+            // 
+            // txtCantidadRecibida
+            // 
+            txtCantidadRecibida.Location = new Point(14, 390);
+            txtCantidadRecibida.Name = "txtCantidadRecibida";
+            txtCantidadRecibida.Size = new Size(140, 23);
+            txtCantidadRecibida.TabIndex = 18;
+            // 
+            // btnRegistrarRecepcion
+            // 
+            btnRegistrarRecepcion.BackColor = Color.FromArgb(35, 80, 124);
+            btnRegistrarRecepcion.FlatStyle = FlatStyle.Flat;
+            btnRegistrarRecepcion.ForeColor = Color.White;
+            btnRegistrarRecepcion.Text = "Registrar cantidad recibida";
+            btnRegistrarRecepcion.UseVisualStyleBackColor = false;
+            btnRegistrarRecepcion.Location = new Point(200, 384);
+            btnRegistrarRecepcion.Name = "btnRegistrarRecepcion";
+            btnRegistrarRecepcion.Size = new Size(260, 34);
+            btnRegistrarRecepcion.TabIndex = 19;
             // 
             // lblObsRecepcion
             // 
             lblObsRecepcion.Text = "Observación de recepción (hasta 200 caracteres)";
-            lblObsRecepcion.Location = new Point(14, 486);
+            lblObsRecepcion.Location = new Point(14, 428);
             lblObsRecepcion.Name = "lblObsRecepcion";
             lblObsRecepcion.Size = new Size(400, 20);
             lblObsRecepcion.TabIndex = 20;
@@ -381,16 +372,16 @@
             // 
             txtObsRecepcion.Multiline = true;
             txtObsRecepcion.MaxLength = 200;
-            txtObsRecepcion.Location = new Point(14, 508);
+            txtObsRecepcion.Location = new Point(14, 450);
             txtObsRecepcion.Name = "txtObsRecepcion";
-            txtObsRecepcion.Size = new Size(700, 60);
+            txtObsRecepcion.Size = new Size(700, 56);
             txtObsRecepcion.TabIndex = 21;
             // 
             // chkRecepcionCompleta
             // 
             chkRecepcionCompleta.Text = "Los preparados se recibieron completos y conformes";
             chkRecepcionCompleta.UseVisualStyleBackColor = true;
-            chkRecepcionCompleta.Location = new Point(740, 510);
+            chkRecepcionCompleta.Location = new Point(740, 452);
             chkRecepcionCompleta.Name = "chkRecepcionCompleta";
             chkRecepcionCompleta.Size = new Size(500, 24);
             chkRecepcionCompleta.TabIndex = 22;
@@ -402,7 +393,7 @@
             btnConfirmarRecepcion.ForeColor = Color.White;
             btnConfirmarRecepcion.Text = "Confirmar recepción";
             btnConfirmarRecepcion.UseVisualStyleBackColor = false;
-            btnConfirmarRecepcion.Location = new Point(14, 580);
+            btnConfirmarRecepcion.Location = new Point(14, 516);
             btnConfirmarRecepcion.Name = "btnConfirmarRecepcion";
             btnConfirmarRecepcion.Size = new Size(417, 34);
             btnConfirmarRecepcion.TabIndex = 23;
@@ -411,32 +402,42 @@
             // 
             btnReportarIncidenteRecepcion.Text = "Reportar incidente";
             btnReportarIncidenteRecepcion.UseVisualStyleBackColor = true;
-            btnReportarIncidenteRecepcion.Location = new Point(440, 580);
+            btnReportarIncidenteRecepcion.Location = new Point(440, 516);
             btnReportarIncidenteRecepcion.Name = "btnReportarIncidenteRecepcion";
             btnReportarIncidenteRecepcion.Size = new Size(300, 34);
             btnReportarIncidenteRecepcion.TabIndex = 24;
             // 
-            // tabDespacho
+            // grpDespacho
             // 
-            tabDespacho.Controls.Add(lblListaEnDespacho);
-            tabDespacho.Controls.Add(lvEnDespacho);
-            tabDespacho.Controls.Add(grpRetiro);
-            tabDespacho.Controls.Add(btnCerrarDespacho);
-            tabDespacho.Controls.Add(btnReportarIncidenteDespacho);
-            tabDespacho.Text = "Retiro y cierre del despacho";
-            tabDespacho.UseVisualStyleBackColor = true;
-            tabDespacho.Location = new Point(4, 24);
-            tabDespacho.Name = "tabDespacho";
-            tabDespacho.Size = new Size(1280, 656);
-            tabDespacho.TabIndex = 25;
+            grpDespacho.Controls.Add(lblListaEnDespacho);
+            grpDespacho.Controls.Add(lvEnDespacho);
+            grpDespacho.Controls.Add(lblTransportista);
+            grpDespacho.Controls.Add(txtTransportista);
+            grpDespacho.Controls.Add(lblFlete);
+            grpDespacho.Controls.Add(txtFlete);
+            grpDespacho.Controls.Add(lblFechaRetiro);
+            grpDespacho.Controls.Add(dtpRetiro);
+            grpDespacho.Controls.Add(lblDocumento);
+            grpDespacho.Controls.Add(txtDocumento);
+            grpDespacho.Controls.Add(btnEmitirDocumento);
+            grpDespacho.Controls.Add(chkConformidad);
+            grpDespacho.Controls.Add(lblAvisoDespacho);
+            grpDespacho.Controls.Add(btnCerrarDespacho);
+            grpDespacho.Controls.Add(btnReportarIncidenteDespacho);
+            grpDespacho.TabStop = false;
+            grpDespacho.Text = "Retiro y cierre del despacho";
+            grpDespacho.Location = new Point(16, 752);
+            grpDespacho.Name = "grpDespacho";
+            grpDespacho.Size = new Size(1288, 440);
+            grpDespacho.TabIndex = 25;
             // 
             // lblListaEnDespacho
             // 
             lblListaEnDespacho.Text = "Órdenes de entrega disponibles para el retiro";
             lblListaEnDespacho.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblListaEnDespacho.Location = new Point(14, 12);
+            lblListaEnDespacho.Location = new Point(14, 26);
             lblListaEnDespacho.Name = "lblListaEnDespacho";
-            lblListaEnDespacho.Size = new Size(950, 24);
+            lblListaEnDespacho.Size = new Size(700, 22);
             lblListaEnDespacho.TabIndex = 26;
             // 
             // lvEnDespacho
@@ -445,9 +446,9 @@
             lvEnDespacho.FullRowSelect = true;
             lvEnDespacho.GridLines = true;
             lvEnDespacho.Items.AddRange(new ListViewItem[] { item_lvEnDespacho_0, item_lvEnDespacho_1 });
-            lvEnDespacho.Location = new Point(14, 40);
+            lvEnDespacho.Location = new Point(14, 50);
             lvEnDespacho.Name = "lvEnDespacho";
-            lvEnDespacho.Size = new Size(1248, 150);
+            lvEnDespacho.Size = new Size(1258, 110);
             lvEnDespacho.TabIndex = 27;
             lvEnDespacho.UseCompatibleStateImageBehavior = false;
             lvEnDespacho.View = View.Details;
@@ -487,90 +488,70 @@
             lvEnDespachoCol6.Text = "Estado";
             lvEnDespachoCol6.Width = 140;
             // 
-            // grpRetiro
-            // 
-            grpRetiro.Controls.Add(lblTransportista);
-            grpRetiro.Controls.Add(txtTransportista);
-            grpRetiro.Controls.Add(lblFlete);
-            grpRetiro.Controls.Add(txtFlete);
-            grpRetiro.Controls.Add(lblFechaRetiro);
-            grpRetiro.Controls.Add(dtpRetiro);
-            grpRetiro.Controls.Add(lblDocumento);
-            grpRetiro.Controls.Add(txtDocumento);
-            grpRetiro.Controls.Add(btnEmitirDocumento);
-            grpRetiro.Controls.Add(chkConformidad);
-            grpRetiro.Controls.Add(lblAvisoDespacho);
-            grpRetiro.TabStop = false;
-            grpRetiro.Text = "Retiro y cierre del despacho";
-            grpRetiro.Location = new Point(12, 204);
-            grpRetiro.Name = "grpRetiro";
-            grpRetiro.Size = new Size(1250, 330);
-            grpRetiro.TabIndex = 28;
-            // 
             // lblTransportista
             // 
             lblTransportista.Text = "Identificación del transportista";
-            lblTransportista.Location = new Point(14, 30);
+            lblTransportista.Location = new Point(14, 172);
             lblTransportista.Name = "lblTransportista";
             lblTransportista.Size = new Size(300, 20);
-            lblTransportista.TabIndex = 29;
+            lblTransportista.TabIndex = 28;
             // 
             // txtTransportista
             // 
             txtTransportista.MaxLength = 60;
-            txtTransportista.Location = new Point(14, 52);
+            txtTransportista.Location = new Point(14, 194);
             txtTransportista.Name = "txtTransportista";
             txtTransportista.Size = new Size(320, 23);
-            txtTransportista.TabIndex = 30;
+            txtTransportista.TabIndex = 29;
             // 
             // lblFlete
             // 
             lblFlete.Text = "Referencia del flete (traslados)";
-            lblFlete.Location = new Point(360, 30);
+            lblFlete.Location = new Point(360, 172);
             lblFlete.Name = "lblFlete";
             lblFlete.Size = new Size(260, 20);
-            lblFlete.TabIndex = 31;
+            lblFlete.TabIndex = 30;
             // 
             // txtFlete
             // 
             txtFlete.MaxLength = 20;
-            txtFlete.Location = new Point(360, 52);
+            txtFlete.Location = new Point(360, 194);
             txtFlete.Name = "txtFlete";
             txtFlete.Size = new Size(240, 23);
-            txtFlete.TabIndex = 32;
+            txtFlete.TabIndex = 31;
             // 
             // lblFechaRetiro
             // 
             lblFechaRetiro.Text = "Fecha de retiro";
-            lblFechaRetiro.Location = new Point(630, 30);
+            lblFechaRetiro.Location = new Point(630, 172);
             lblFechaRetiro.Name = "lblFechaRetiro";
             lblFechaRetiro.Size = new Size(200, 20);
-            lblFechaRetiro.TabIndex = 33;
+            lblFechaRetiro.TabIndex = 32;
             // 
             // dtpRetiro
             // 
             dtpRetiro.Format = DateTimePickerFormat.Short;
             dtpRetiro.Value = new DateTime(2026, 10, 12, 0, 0, 0, 0);
-            dtpRetiro.Location = new Point(630, 52);
+            dtpRetiro.Location = new Point(630, 194);
             dtpRetiro.Name = "dtpRetiro";
             dtpRetiro.Size = new Size(170, 23);
-            dtpRetiro.TabIndex = 34;
+            dtpRetiro.TabIndex = 33;
             // 
             // lblDocumento
             // 
             lblDocumento.Text = "Documento de salida";
-            lblDocumento.Location = new Point(14, 100);
+            lblDocumento.Location = new Point(14, 232);
             lblDocumento.Name = "lblDocumento";
             lblDocumento.Size = new Size(200, 20);
-            lblDocumento.TabIndex = 35;
+            lblDocumento.TabIndex = 34;
             // 
             // txtDocumento
             // 
             txtDocumento.ReadOnly = true;
-            txtDocumento.Location = new Point(14, 122);
+            txtDocumento.Location = new Point(14, 254);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(240, 23);
-            txtDocumento.TabIndex = 36;
+            txtDocumento.TabIndex = 35;
             // 
             // btnEmitirDocumento
             // 
@@ -579,27 +560,27 @@
             btnEmitirDocumento.ForeColor = Color.White;
             btnEmitirDocumento.Text = "Emitir remito / guía de traslado";
             btnEmitirDocumento.UseVisualStyleBackColor = false;
-            btnEmitirDocumento.Location = new Point(270, 116);
+            btnEmitirDocumento.Location = new Point(270, 248);
             btnEmitirDocumento.Name = "btnEmitirDocumento";
             btnEmitirDocumento.Size = new Size(300, 34);
-            btnEmitirDocumento.TabIndex = 37;
+            btnEmitirDocumento.TabIndex = 36;
             // 
             // chkConformidad
             // 
             chkConformidad.Text = "El transportista presta conformidad de retiro";
             chkConformidad.UseVisualStyleBackColor = true;
-            chkConformidad.Location = new Point(14, 176);
+            chkConformidad.Location = new Point(14, 298);
             chkConformidad.Name = "chkConformidad";
             chkConformidad.Size = new Size(600, 24);
-            chkConformidad.TabIndex = 38;
+            chkConformidad.TabIndex = 37;
             // 
             // lblAvisoDespacho
             // 
             lblAvisoDespacho.Text = "Emitir o imprimir el documento no descuenta stock. El egreso se registra una sola vez al cerrar el despacho.";
-            lblAvisoDespacho.Location = new Point(14, 214);
+            lblAvisoDespacho.Location = new Point(14, 330);
             lblAvisoDespacho.Name = "lblAvisoDespacho";
             lblAvisoDespacho.Size = new Size(1200, 24);
-            lblAvisoDespacho.TabIndex = 39;
+            lblAvisoDespacho.TabIndex = 38;
             // 
             // btnCerrarDespacho
             // 
@@ -608,19 +589,19 @@
             btnCerrarDespacho.ForeColor = Color.White;
             btnCerrarDespacho.Text = "Cerrar despacho";
             btnCerrarDespacho.UseVisualStyleBackColor = false;
-            btnCerrarDespacho.Location = new Point(16, 550);
+            btnCerrarDespacho.Location = new Point(14, 376);
             btnCerrarDespacho.Name = "btnCerrarDespacho";
             btnCerrarDespacho.Size = new Size(417, 34);
-            btnCerrarDespacho.TabIndex = 40;
+            btnCerrarDespacho.TabIndex = 39;
             // 
             // btnReportarIncidenteDespacho
             // 
             btnReportarIncidenteDespacho.Text = "Reportar incidente";
             btnReportarIncidenteDespacho.UseVisualStyleBackColor = true;
-            btnReportarIncidenteDespacho.Location = new Point(449, 550);
+            btnReportarIncidenteDespacho.Location = new Point(440, 376);
             btnReportarIncidenteDespacho.Name = "btnReportarIncidenteDespacho";
             btnReportarIncidenteDespacho.Size = new Size(300, 34);
-            btnReportarIncidenteDespacho.TabIndex = 41;
+            btnReportarIncidenteDespacho.TabIndex = 40;
             // 
             // RecepcionDespachoPedidosForm
             // 
@@ -628,31 +609,25 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             ClientSize = new Size(1334, 901);
-            Controls.Add(pnlEncabezado);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblEmpresa);
             Controls.Add(grpContexto);
-            Controls.Add(tabDespachoPedidos);
+            Controls.Add(grpRecepcion);
+            Controls.Add(grpDespacho);
             Font = new Font("Segoe UI", 9F);
-            AutoScroll = true;
-            AutoScrollMinSize = new Size(1334, 901);
-            MinimumSize = new Size(640, 480);
+            AutoScroll = true;
+            AutoScrollMinSize = new Size(1334, 1210);
+            MinimumSize = new Size(640, 480);
             WindowState = FormWindowState.Maximized;
             Name = "RecepcionDespachoPedidosForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Recepción y Despacho de Pedidos";
-            grpRetiro.ResumeLayout(false);
-            tabDespacho.ResumeLayout(false);
-            grpControlRecepcion.ResumeLayout(false);
-            grpBuscarEntrega.ResumeLayout(false);
-            tabRecepcion.ResumeLayout(false);
-            tabDespachoPedidos.ResumeLayout(false);
+            grpDespacho.ResumeLayout(false);
+            grpRecepcion.ResumeLayout(false);
             grpContexto.ResumeLayout(false);
-            pnlEncabezado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvControlRecepcion).EndInit();
             ResumeLayout(false);
-            dgvControlRecepcion.Rows.Add("SKU-001", "Remera de algodón", "80", "", "");
         }
         #endregion
-        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblEmpresa;
         private System.Windows.Forms.GroupBox grpContexto;
@@ -661,9 +636,7 @@
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFechaTrabajo;
-        private System.Windows.Forms.TabControl tabDespachoPedidos;
-        private System.Windows.Forms.TabPage tabRecepcion;
-        private System.Windows.Forms.GroupBox grpBuscarEntrega;
+        private System.Windows.Forms.GroupBox grpRecepcion;
         private System.Windows.Forms.Label lblBuscarEntrega;
         private System.Windows.Forms.TextBox txtBuscarEntrega;
         private System.Windows.Forms.Button btnBuscar;
@@ -677,19 +650,22 @@
         private System.Windows.Forms.ColumnHeader lvPreparadasCol4;
         private System.Windows.Forms.ColumnHeader lvPreparadasCol5;
         private System.Windows.Forms.ColumnHeader lvPreparadasCol6;
-        private System.Windows.Forms.GroupBox grpControlRecepcion;
-        private System.Windows.Forms.DataGridView dgvControlRecepcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSkuR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProductoR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCantOrden;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRecibida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDifR;
+        private System.Windows.Forms.Label lblControlBultos;
+        private System.Windows.Forms.ListView lvControlRecepcion;
+        private System.Windows.Forms.ColumnHeader lvControlRecepcionCol0;
+        private System.Windows.Forms.ColumnHeader lvControlRecepcionCol1;
+        private System.Windows.Forms.ColumnHeader lvControlRecepcionCol2;
+        private System.Windows.Forms.ColumnHeader lvControlRecepcionCol3;
+        private System.Windows.Forms.ColumnHeader lvControlRecepcionCol4;
+        private System.Windows.Forms.Label lblCantidadRecibida;
+        private System.Windows.Forms.TextBox txtCantidadRecibida;
+        private System.Windows.Forms.Button btnRegistrarRecepcion;
         private System.Windows.Forms.Label lblObsRecepcion;
         private System.Windows.Forms.TextBox txtObsRecepcion;
         private System.Windows.Forms.CheckBox chkRecepcionCompleta;
         private System.Windows.Forms.Button btnConfirmarRecepcion;
         private System.Windows.Forms.Button btnReportarIncidenteRecepcion;
-        private System.Windows.Forms.TabPage tabDespacho;
+        private System.Windows.Forms.GroupBox grpDespacho;
         private System.Windows.Forms.Label lblListaEnDespacho;
         private System.Windows.Forms.ListView lvEnDespacho;
         private System.Windows.Forms.ColumnHeader lvEnDespachoCol0;
@@ -699,7 +675,6 @@
         private System.Windows.Forms.ColumnHeader lvEnDespachoCol4;
         private System.Windows.Forms.ColumnHeader lvEnDespachoCol5;
         private System.Windows.Forms.ColumnHeader lvEnDespachoCol6;
-        private System.Windows.Forms.GroupBox grpRetiro;
         private System.Windows.Forms.Label lblTransportista;
         private System.Windows.Forms.TextBox txtTransportista;
         private System.Windows.Forms.Label lblFlete;
