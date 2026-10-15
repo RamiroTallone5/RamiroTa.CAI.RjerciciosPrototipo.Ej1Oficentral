@@ -1,6 +1,6 @@
-﻿namespace GRUPO_D.PAMPAZON.Empaquetado_y_Preparación_de_Mercaderias
+﻿namespace Pampazon.Prototipo
 {
-    partial class EmpaquetadoPreparacionMercaderiasForm1
+    partial class EmpaquetadoPreparacionEntregasForm
     {
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
@@ -576,7 +576,7 @@
             btnReportarIncidente.Size = new Size(104, 34);
             btnReportarIncidente.TabIndex = 39;
             // 
-            // EmpaquetadoPreparacionMercaderiasForm1
+            // EmpaquetadoPreparacionEntregasForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -592,7 +592,7 @@
             Controls.Add(grpCierre);
             Font = new Font("Segoe UI", 9F);
             MinimumSize = new Size(1350, 940);
-            Name = "EmpaquetadoPreparacionMercaderiasForm1";
+            Name = "EmpaquetadoPreparacionEntregasForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Empaquetado y Preparación de Entregas";
             grpCierre.ResumeLayout(false);

@@ -1,6 +1,6 @@
-﻿namespace GRUPO_D.PAMPAZON.Recepción_y_Despacho_de_Pedidos
+﻿namespace Pampazon.Prototipo
 {
-    partial class RecepcionDespachoPedidosForm1
+    partial class RecepcionDespachoPedidosForm
     {
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
@@ -622,7 +622,7 @@
             btnReportarIncidenteDespacho.Size = new Size(300, 34);
             btnReportarIncidenteDespacho.TabIndex = 41;
             // 
-            // RecepcionDespachoPedidosForm1
+            // RecepcionDespachoPedidosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -633,7 +633,7 @@
             Controls.Add(tabDespachoPedidos);
             Font = new Font("Segoe UI", 9F);
             MinimumSize = new Size(1350, 940);
-            Name = "RecepcionDespachoPedidosForm1";
+            Name = "RecepcionDespachoPedidosForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Recepción y Despacho de Pedidos";
             grpRetiro.ResumeLayout(false);

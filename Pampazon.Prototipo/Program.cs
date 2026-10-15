@@ -1,7 +1,5 @@
-using GRUPO_D.PAMPAZON.Empaquetado_y_Preparación_de_Mercaderias;
-using Pampazon.Prototipos;
 
-namespace GRUPO_D.PAMPAZON
+namespace Pampazon.Prototipo
 {
     internal static class Program
     {

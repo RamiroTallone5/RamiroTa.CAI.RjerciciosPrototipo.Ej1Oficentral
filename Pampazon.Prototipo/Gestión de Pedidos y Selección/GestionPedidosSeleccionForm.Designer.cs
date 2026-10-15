@@ -1,4 +1,4 @@
-﻿namespace Pampazon.Prototipos
+﻿namespace Pampazon.Prototipo
 {
     partial class GestionPedidosSeleccionForm
     {

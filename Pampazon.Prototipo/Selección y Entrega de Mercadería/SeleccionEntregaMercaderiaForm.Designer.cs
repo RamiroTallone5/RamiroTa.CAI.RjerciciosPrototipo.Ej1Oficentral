@@ -1,6 +1,6 @@
-﻿namespace GRUPO_D.PAMPAZON.Seleccion_y_entrega_de_Mercaderias
+﻿namespace Pampazon.Prototipo
 {
-    partial class SeleccionEntregaMercaderiasForm1
+    partial class SeleccionEntregaMercaderiaForm
     {
         private System.ComponentModel.IContainer components = null;
         protected override void Dispose(bool disposing)
@@ -78,7 +78,7 @@
             // 
             // lblTitulo
             // 
-            lblTitulo.Text = "Selección y Entrega de Mercaderías";
+            lblTitulo.Text = "Selección y Entrega de Mercadería";
             lblTitulo.Font = new Font("Segoe UI", 19F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
             lblTitulo.Location = new Point(24, 13);
@@ -443,7 +443,7 @@
             btnReportarIncidente.Size = new Size(260, 34);
             btnReportarIncidente.TabIndex = 29;
             // 
-            // SeleccionEntregaMercaderiasForm1
+            // SeleccionEntregaMercaderiaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -456,9 +456,9 @@
             Controls.Add(grpConfirmacion);
             Font = new Font("Segoe UI", 9F);
             MinimumSize = new Size(1350, 940);
-            Name = "SeleccionEntregaMercaderiasForm1";
+            Name = "SeleccionEntregaMercaderiaForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pampazon - Selección y Entrega de Mercaderías";
+            Text = "Pampazon - Selección y Entrega de Mercadería";
             grpConfirmacion.ResumeLayout(false);
             grpDetalleSeleccion.ResumeLayout(false);
             grpSelecciones.ResumeLayout(false);

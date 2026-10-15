@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Pampazon.Prototipos
+namespace Pampazon.Prototipo
 {
     public partial class GestionPedidosSeleccionForm : Form
     {
