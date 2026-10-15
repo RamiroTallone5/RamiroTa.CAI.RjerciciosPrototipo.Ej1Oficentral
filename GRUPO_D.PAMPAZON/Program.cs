@@ -1,4 +1,7 @@
-namespace RamiroTa.CAI.RjerciciosPrototipo.Ej1Oficentral
+using GRUPO_D.PAMPAZON.Empaquetado_y_Preparación_de_Mercaderias;
+using Pampazon.Prototipos;
+
+namespace GRUPO_D.PAMPAZON
 {
     internal static class Program
     {
@@ -11,7 +14,7 @@ namespace RamiroTa.CAI.RjerciciosPrototipo.Ej1Oficentral
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new GestionPedidosSeleccionForm());
         }
     }
 }
