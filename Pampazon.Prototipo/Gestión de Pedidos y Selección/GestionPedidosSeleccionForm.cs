@@ -8,6 +8,7 @@ namespace Pampazon.Prototipo
         public GestionPedidosSeleccionForm()
         {
             InitializeComponent();
+            AjustePantalla.Aplicar(this);
         }
 
         private void txtEstado_TextChanged(object sender, EventArgs e)

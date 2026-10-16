@@ -8,6 +8,7 @@ namespace Pampazon.Prototipo
         public RecepcionDespachoPedidosForm()
         {
             InitializeComponent();
+            AjustePantalla.Aplicar(this);
         }
     }
 }

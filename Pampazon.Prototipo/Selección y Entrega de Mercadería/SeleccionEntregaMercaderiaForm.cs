@@ -8,6 +8,7 @@ namespace Pampazon.Prototipo
         public SeleccionEntregaMercaderiaForm()
         {
             InitializeComponent();
+            AjustePantalla.Aplicar(this);
         }
     }
 }

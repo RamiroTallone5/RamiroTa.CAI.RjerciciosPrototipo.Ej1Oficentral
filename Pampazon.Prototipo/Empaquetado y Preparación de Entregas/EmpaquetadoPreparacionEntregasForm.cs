@@ -32,6 +32,7 @@ namespace Pampazon.Prototipo
         public EmpaquetadoPreparacionEntregasForm()
         {
             InitializeComponent();
+            AjustePantalla.Aplicar(this);
 
             txtCantidadControlada.MaxLength = 6;
             txtCantBulto.MaxLength = 6;

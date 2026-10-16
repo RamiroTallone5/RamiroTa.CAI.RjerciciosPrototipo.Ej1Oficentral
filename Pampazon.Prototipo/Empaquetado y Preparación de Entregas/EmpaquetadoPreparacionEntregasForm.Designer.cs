@@ -604,7 +604,6 @@
             AutoScroll = true;
             AutoScrollMinSize = new Size(1067, 901);
             MinimumSize = new Size(640, 480);
-            WindowState = FormWindowState.Maximized;
             Name = "EmpaquetadoPreparacionEntregasForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pampazon - Empaquetado y Preparación de Entregas";
